@@ -122,6 +122,8 @@ public class Pizza {
 	public void setIngredients(List<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
+	
+	@JsonIgnore
 	public void setIngredients(Ingredient... ingredients) {	
 		setIngredients(Arrays.asList(ingredients));
 	}

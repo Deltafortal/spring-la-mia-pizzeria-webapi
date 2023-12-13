@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+
+	<!-- Bootstrap CSS -->
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}"/>
+	
+</head>
+<body>
+	
+	<!-- Header -->
+	<header th:replace="fragments/header :: header('Pizzeria da Aldo')">
+			
+	</header>
+	
+	<div class="container mt-5">
+		
+		<h2>Offerte speciali</h2>
+		
+		<form id="sale-form" method="POST" >
+			<select name="pizza_id">
+				<option th:each="pizza : ${pizza}" th:value="${pizza.id}">
+					[[${pizza.nome}]]
+				</option>
+			</select>
+			
+			<label for="sale-title" class="form-label">Nome offerta</label>
+			<input type="text"  th:field="${specialSale.title}" id="sale-title" name="title">				
+			
+			<label for="sale-start" class="form-label">Data di inizio</label>
+			<input type="text" th:field="${specialSale.startingDate}" id="sale-start" name="starting_date">
+			
+			<label for="sale-end" class="form-label">Data di fine</label>
+			<input type="text" th:field="${specialSale.endDate}"  id="sale-end" name="end_date">
+			
+			<input type="submit" value="Invia">
+		</form>
+	</div>
+	
+</body>
+</html>

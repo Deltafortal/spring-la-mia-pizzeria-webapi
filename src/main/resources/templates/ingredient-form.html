@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+
+	<!-- Bootstrap CSS -->
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}"/>
+	
+</head>
+<body>
+	
+	<!-- Header -->
+	<header th:replace="fragments/header :: header('Pizzeria da Aldo')">
+			
+	</header>
+	
+	<div class="container mt-5">
+		
+		<h2>Ingredienti</h2>
+		
+		<form id="sale-form" method="POST" >
+			
+			<label for="ingredient-title" class="form-label">Ingrediente</label>
+			<input type="text"  th:field="${ingredient.title}" id="ingredient-title" name="title">				
+			
+			<input type="submit" value="Invia">
+		</form>
+	</div>
+	
+</body>
+</html>

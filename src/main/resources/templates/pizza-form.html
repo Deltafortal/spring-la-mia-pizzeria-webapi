@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<!-- Bootstrap CSS -->
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}"/>
+</head>
+<body>
+
+	<!-- Header -->
+	<header th:replace="fragments/header :: header('Pizzeria da Aldo')">
+			
+	</header>
+
+
+	<!-- Container -->
+	<div class="container text-center">
+		
+		
+		<form class="mt-5" id="pizza-form" method="POST" th:object="${pizza}"> 
+			<!-- 
+				!NOTA th:action="@{/pizza/create}" Eliminata così Java controlla gli id e capisce da solo 
+				se mandare la create o update 
+				Ricordarsi che devono avere lo stesso nome.
+				-->
+			<div class="row">
+				<div class="col-4">
+					<label for="pizza-name" class="form-label">Nome</label>
+					<input type="text" class="form-control" id="pizza-name" th:field="*{nome}">
+					<div th:replace="fragments/errors :: errorDiv('nome')" />
+				  </div>
+				
+				
+				<div class="col-8">
+					<label for="pizza-url" class="form-label">Url immagine</label>
+					<input type="text" class="form-control" id="pizza-url" th:field="*{url}">
+					<div th:replace="fragments/errors :: errorDiv('url')" />
+				 </div>
+				
+			</div>
+				
+			<div class="row mt-5">
+				<div class="col-4">
+					<label for="pizza-price" class="form-label">Prezzo</label>
+					<div class="input-group">
+					 	<span class="input-group-text">€</span>
+					 	<input type="text" class="form-control" id="pizza-price" th:field="*{price}">
+					 	<div th:replace="fragments/errors :: errorDiv('price')" />
+					</div>
+				</div>
+				
+				<div class="col-8">
+					<label for="pizza-description" class="form-label">Descrizione</label>
+					<input type="text" class="form-control" id="pizza-description" th:field="*{descrizione}">
+					<div th:replace="fragments/errors :: errorDiv('descrizione')" />
+				 </div>
+				
+			</div>
+			
+			
+			<!-- Checkbox -->		
+			<div class="form-check mt-5 me-3" th:each="ingredient : ${ingredients}" style="display: inline-block;">
+			  <input class="form-check-input" type="checkbox" th:value="${ingredient.id}" 
+			  		th:id="${'ingredient-' + ingredient.id}" th:field="${pizza.ingredients}"
+			  	>
+			  <label class="form-check-label" th:for="${'ingredient-' + ingredient.id}">[[${ingredient.title}]]</label>
+			</div>
+			
+			
+			
+			
+			<div class="row">
+				<div class="col-12 mt-4">
+				 	<button type="submit" class="btn btn-success" value="STORE">Invia</button>					
+				</div>
+			</div>
+		</form>
+		
+	</div>
+</body>
+</html>

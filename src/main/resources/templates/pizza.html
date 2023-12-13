@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Pizzeria da Aldo</title>
+
+	<!-- Bootstrap CSS -->
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}"/>
+</head>
+<body>
+	
+	<!-- Header -->
+	<header th:replace="fragments/header :: header('Pizzeria da Aldo')">
+			
+	</header>
+	
+	
+	
+	<!-- Container -->
+	<div class="container text-center">
+		
+		<h2 class="mt-5" th:text="${pizza.nome}"></h2>
+		<img class="m-3" style="width: 400px" th:src="${pizza.url}" />
+		
+		<p th:text="${pizza.descrizione}"></p>
+		<h4 th:text="'Prezzo: ' + ${pizza.price} + '€'"></h4>
+		
+		<h4 class="mt-5 mb-3">Offerte Speciali: </h4>
+		<a href="/pizza/specialSale" class="btn btn-success mb-5">Crea una nuova offerta</a>
+		
+		<!-- Cards -->
+		<div class="row mb-5" th:object="${pizza}">
+		  <div class="col-sm-3 mb-3 mb-sm-0">
+			  
+		    <div th:each="specialSale : ${pizza.specialSale}" class="card">
+		      <div class="card-body">
+		        <h5 class="card-title">[[${specialSale.title}]]</h5>
+		        <p class="card-text">Data di inizio: [[${specialSale.startingDate}]]</p>
+		        <p class="card-text">Data di fine: [[${specialSale.endDate}]] </p>
+		        <a th:href="@{/pizza/specialSale/{id} (id=${specialSale.id})}" class="btn btn-primary">Modifica</a>
+		      </div>
+		    </div>
+		    
+		  </div>
+		</div>
+		
+	</div>
+	
+
+</body>
+</html>

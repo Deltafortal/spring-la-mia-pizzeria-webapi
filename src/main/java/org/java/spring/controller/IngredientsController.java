@@ -81,7 +81,7 @@ public class IngredientsController {
 		} */
 		
 		
-		List<Pizza> Pizzas = ingredient.getPizza();
+		List<Pizza> Pizzas = ingredient.getPizzas();
 		Pizzas.forEach(p -> {
 			
 			p.getIngredients().remove(ingredient);

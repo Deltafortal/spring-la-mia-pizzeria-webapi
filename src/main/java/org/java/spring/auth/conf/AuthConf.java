@@ -20,8 +20,10 @@ public class AuthConf {
 		
 		http
 			.csrf().disable()
+			.cors().disable()
 			.authorizeHttpRequests()
 	        .requestMatchers("/pizza/create/**").hasAnyAuthority("ADMIN")
+	        .requestMatchers("/api/pizza/**").permitAll()
 	        .requestMatchers("/**").permitAll()
 	        .and().formLogin()
 	        .and().logout()

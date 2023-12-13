@@ -1,5 +1,7 @@
 package org.java.spring.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +24,7 @@ public class SpecialSale {
 	
 	
 	@ManyToOne
+	@JsonIgnore
 	private Pizza pizza;
 	
 	

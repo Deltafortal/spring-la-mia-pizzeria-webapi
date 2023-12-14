@@ -2,15 +2,11 @@
 <script>
 
 export default {
-
-    //Data
     data() {
         return {
             
         }
     },
-
-    //Props
     props: {
         pizzas: Array
     }
@@ -34,6 +30,7 @@ export default {
                 <div class="card-body">
                     <h5 class="card-title">{{ pizza.nome }}</h5>
                     <p class="card-text">{{ pizza.descrizione }}</p>
+                    <a href="#"></a>
                 </div>
             </div>
         </div>

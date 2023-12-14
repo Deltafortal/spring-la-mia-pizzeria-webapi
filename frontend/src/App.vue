@@ -2,12 +2,11 @@
 <script>
     //Import
     import AppHeader from './components/AppHeader.vue';
-    import AppMain from './components/AppMain.vue';
+
     import axios from 'axios';
 
     export default {
-        components: { AppHeader, AppMain },
-
+        components: {AppHeader},
         //Data
         data() {
             return {
@@ -48,8 +47,11 @@
   <AppHeader />
 
   <div class="container mb-5">
-    <!--- Main -->
-    <AppMain :pizzas="this.pizzas" />
+
+    <!-- Pages -->
+    <main>
+      <RouterView :pizzas="pizzas"/>
+    </main>
   </div>
 
 </template>

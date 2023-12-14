@@ -1,15 +1,36 @@
 <!------------------ Script ----------------->
 <script>
 
+import axios from 'axios';
+
 export default {
+    //Data
     data() {
         return {
-            
+          pizzas: [],
         }
     },
-    props: {
-        pizzas: Array
+
+    //methods
+    methods: {
+
+      fetchPizzas(){
+
+        axios.get('http://localhost:8080/api/pizza').then(response => {
+          this.pizzas = response.data;
+        }).catch(error => {
+          console.error('Errore nella chiamata API', error);
+        });
+      }
+
+    },
+
+
+    // Mounted
+    mounted() {
+      this.fetchPizzas()
     }
+
 }
 
 
@@ -30,7 +51,7 @@ export default {
                 <div class="card-body">
                     <h5 class="card-title">{{ pizza.nome }}</h5>
                     <p class="card-text">{{ pizza.descrizione }}</p>
-                    <a href="#"></a>
+                    <RouterLink class="btn btn-primary" :to="`/pizza/${pizza.id}`">Mostra</RouterLink>
                 </div>
             </div>
         </div>
@@ -51,7 +72,7 @@ export default {
     flex-direction: column;
     align-items: center;
     padding: 15px;
-    height: 330px;
+    min-height: 380px;
 
     img {
         width: 250px;

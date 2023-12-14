@@ -3,38 +3,9 @@
     //Import
     import AppHeader from './components/AppHeader.vue';
 
-    import axios from 'axios';
-
     export default {
         components: {AppHeader},
-        //Data
-        data() {
-            return {
-              pizzas: [],
-            }
-        },
-
-        //methods
-        methods: {
-
-          fetchPizza(){
-
-            axios.get('http://localhost:8080/api/pizza').then(response => {
-              this.pizzas = response.data;
-            }).catch(error => {
-              console.error('Errore nella chiamata API', error);
-            });
-          }
-
-        },
-
-
-        // Mounted
-        mounted() {
-          this.fetchPizza()
-        }
-
-    } 
+    }
 </script>
 
 
@@ -50,7 +21,7 @@
 
     <!-- Pages -->
     <main>
-      <RouterView :pizzas="pizzas"/>
+      <RouterView />
     </main>
   </div>
 

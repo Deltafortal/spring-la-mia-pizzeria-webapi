@@ -1,18 +1,37 @@
 <!------------------ Script ----------------->
 <script>
-
+import axios from 'axios';
 export default {
 
     //Data
     data() {
         return {
-            
+            pizza: null
         }
     },
 
-    //Props
-    props: {
-        pizzas: Array
+    methods: {
+
+        fetchPizza(){
+
+            axios.get(`http://localhost:8080/api/pizza/${this.$route.params.id}`).then(response => {
+            this.pizza = response.data;
+            }).catch(error => {
+            console.error('Errore nella chiamata API', error);
+            });
+        },
+
+        deletePizza(){
+            axios.delete(`http://localhost:8080/api/pizza/${this.$route.params.id}`, { key: 'value' }).then(response => {
+                console.log(response.data);
+            }).catch(error => {
+                console.error('Errore nella chiamata API', error);
+            });
+        }
+    },
+
+    created() {
+        this.fetchPizza()
     }
 }
 
@@ -26,20 +45,16 @@ export default {
 <template>
     <h1 class="text-center mb-5">Le pizze:</h1>
 
-
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div v-for="pizza in this.pizzas" class="col">
-            <div class="card text-center">
-                <img :src="pizza.url" class="card-img-top" :alt="pizza.nome">
-                <div class="card-body">
-                    <h5 class="card-title">{{ pizza.nome }}</h5>
-                    <p class="card-text">{{ pizza.descrizione }}</p>
-                    <a href="#"></a>
-                </div>
+    <div v-if="this.pizza != null">
+        <div class="card" style="width: 18rem;">
+            <img :src="this.pizza.url" class="card-img-top" :alt="this.pizza.nome">
+            <div class="card-body">
+                <h5 class="card-title">{{ this.pizza.nome }}</h5>
+                <p class="card-text">{{ this.pizza.descrizione }}</p>
+                <RouterLink class="btn btn-danger" @click="deletePizza" to="/">Cancella</RouterLink>
             </div>
         </div>
     </div>
-
 
 </template>
 

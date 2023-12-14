@@ -64,18 +64,6 @@ export default {
 <!------------------ Style ----------------->
 <style lang="scss" scoped>
 
-.card {
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px;
-    height: 330px;
-
-    img {
-        width: 250px;
-    }
-}
 
 
 </style>
